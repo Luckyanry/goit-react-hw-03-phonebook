@@ -64,8 +64,17 @@ class App extends Component {
         <h1>Phonebook</h1>
         <ContactForm state={this.state} addContact={this.addContact} />
 
-        <h2>Contacts</h2>
-        <Filter state={this.state} handleFilter={this.handleFilter} />
+        {this.state.contacts.length > 0 ? (
+          <h2>Contacts</h2>
+        ) : (
+          <>
+            <h2>Contacts</h2>
+            <p>Contacts list is empty. Please, create new cotnact!</p>
+          </>
+        )}
+        {this.state.contacts.length > 1 && (
+          <Filter state={this.state} handleFilter={this.handleFilter} />
+        )}
         <ContactList
           filteredContacts={this.getFilteredContact()}
           deleteContact={this.deleteContact}
